@@ -462,8 +462,6 @@ describe('Env integration', function() {
     if (jasmine.getEnv().skipBrowserFlake) {
       jasmine.getEnv().skipBrowserFlake();
     }
-    var start = new Date().getTime();
-    expect(start).toBe('start time')
 
     var global = {
       setTimeout: function(fn, delay) {
@@ -482,7 +480,7 @@ describe('Env integration', function() {
     ]);
 
     var assertions = function() {
-      expect(new Date().getTime()).toBe('in assertions');
+      jasmine.getEnv().trace('in assertions');
       expect(reporter.specDone).not.toHaveFailedExpectationsForRunnable(
         'A suite fails',
         ['fail thrown']
@@ -491,7 +489,7 @@ describe('Env integration', function() {
         'A suite',
         ['fail thrown']
       );
-      expect(new Date().getTime()).toBe('assertions finishing');
+      jasmine.getEnv().trace('assertions finishing');
       done();
     };
 
@@ -500,12 +498,12 @@ describe('Env integration', function() {
     env.fdescribe('A suite', function() {
       env.it('fails', function(specDone) {
         setTimeout(function() {
-          expect(new Date().getTime()).toBe('spec calling done')
+          jasmine.getEnv().trace('spec calling done');
           specDone();
           setTimeout(function() {
-            expect(new Date().getTime()).toBe('spec outer timeout')
+            jasmine.getEnv().trace('spec outer timeout');
             setTimeout(function() {
-              expect(new Date().getTime()).toBe('spec inner timeout calling fail')
+              jasmine.getEnv().trace('spec inner timeout calling fail');
               global.onerror('fail');
             });
           });
