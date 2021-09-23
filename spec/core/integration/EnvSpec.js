@@ -479,6 +479,10 @@ describe('Env integration', function() {
       'suiteDone'
     ]);
 
+    reporter.specDone.and.callFake(function() {
+      jasmine.getEnv().trace('reporter specDone called');
+    });
+
     var assertions = function() {
       jasmine.getEnv().trace('in assertions');
       expect(reporter.specDone).not.toHaveFailedExpectationsForRunnable(
