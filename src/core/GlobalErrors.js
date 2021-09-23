@@ -4,6 +4,8 @@ getJasmineRequireObj().GlobalErrors = function(j$) {
     global = global || j$.getGlobal();
 
     var onerror = function onerror() {
+      // TODO remove this:
+      jasmine.getEnv().trace('GlobalErrors onerror:' + arguments[0]);
       var handler = handlers[handlers.length - 1];
 
       if (handler) {

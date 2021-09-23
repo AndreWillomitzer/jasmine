@@ -88,6 +88,8 @@ getJasmineRequireObj().QueueRunner = function(j$) {
     var self = this,
       completedSynchronously = true,
       handleError = function handleError(error) {
+        // TODO remove
+        jasmine.getEnv().trace('QueueRunner handleError: ' + error);
         onException(error);
         next(error);
       },
