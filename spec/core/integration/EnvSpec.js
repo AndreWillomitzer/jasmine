@@ -480,11 +480,11 @@ describe('Env integration', function() {
     ]);
 
     reporter.specDone.and.callFake(function() {
-      jasmine.getEnv().trace('reporter specDone called');
+      jasmine.trace('reporter specDone called');
     });
 
     var assertions = function() {
-      jasmine.getEnv().trace('in assertions');
+      jasmine.trace('in assertions');
       expect(reporter.specDone).not.toHaveFailedExpectationsForRunnable(
         'A suite fails',
         ['fail thrown']
@@ -493,7 +493,7 @@ describe('Env integration', function() {
         'A suite',
         ['fail thrown']
       );
-      jasmine.getEnv().trace('assertions finishing');
+      jasmine.trace('assertions finishing');
       done();
     };
 
@@ -502,12 +502,12 @@ describe('Env integration', function() {
     env.fdescribe('A suite', function() {
       env.it('fails', function(specDone) {
         setTimeout(function() {
-          jasmine.getEnv().trace('spec calling done');
+          jasmine.trace('spec calling done');
           specDone();
           setTimeout(function() {
-            jasmine.getEnv().trace('spec outer timeout');
+            jasmine.trace('spec outer timeout');
             setTimeout(function() {
-              jasmine.getEnv().trace('spec inner timeout calling fail');
+              jasmine.trace('spec inner timeout calling fail');
               global.onerror('fail');
             });
           });
