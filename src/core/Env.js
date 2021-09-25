@@ -1306,17 +1306,6 @@ getJasmineRequireObj().Env = function(j$) {
       currentSuite().setSuiteProperty(key, value);
     };
 
-    /**
-     * Logs a message for use in debugging. If the spec fails, trace messages
-     * will be included in the {@link SpecResult|result} passed to the
-     * reporter's specDone method.
-     *
-     * This method should be called only when a spec (including any associated
-     * beforeEach or afterEach functions) is running.
-     * @function
-     * @name Env#trace
-     * @param {String} msg - The message to log
-     */
     this.trace = function(msg) {
       var maybeSpec = currentRunnable();
 
